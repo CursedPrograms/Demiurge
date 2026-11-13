@@ -38,7 +38,7 @@ exit /b 0
 if exist dist\Demiurge rmdir /s /q dist\Demiurge
 mkdir dist\Demiurge
 copy /y bin\godot.windows.editor.x86_64.mono.exe dist\Demiurge\Demiurge.exe >nul || exit /b 1
-if exist bin\godot.windows.editor.x86_64.mono.console.exe copy /y bin\godot.windows.editor.x86_64.mono.console.exe "dist\Demiurge\Demiurge (console).exe" >nul
+if exist bin\godot.windows.editor.x86_64.mono.console.exe copy /y bin\godot.windows.editor.x86_64.mono.console.exe dist\Demiurge\Demiurge.console.exe >nul
 for %%f in (bin\*.dll) do copy /y "%%f" dist\Demiurge\ >nul
 rem C#: the editor's own assemblies, beside it
 xcopy /e /i /q /y bin\GodotSharp dist\Demiurge\GodotSharp >nul || exit /b 1
@@ -48,8 +48,8 @@ if exist bin\godot.windows.template_release.x86_64.mono.exe (
     copy /y bin\godot.windows.template_debug.x86_64.mono.exe dist\Demiurge\templates\windows_debug_x86_64.exe >nul
     if exist bin\godot.windows.template_release.x86_64.mono.console.exe copy /y bin\godot.windows.template_release.x86_64.mono.console.exe dist\Demiurge\templates\windows_release_x86_64_console.exe >nul
     if exist bin\godot.windows.template_debug.x86_64.mono.console.exe copy /y bin\godot.windows.template_debug.x86_64.mono.console.exe dist\Demiurge\templates\windows_debug_x86_64_console.exe >nul
-    rem the folder name the editor looks for: 4.7.2.stable.mono
-    python -c "import version as v; open(r'dist\Demiurge\templates\version.txt','w').write((f'{v.major}.{v.minor}.{v.patch}' if v.patch else f'{v.major}.{v.minor}') + f'.{v.status}.mono')"
+    rem the folder name the editor looks for: 4.7.2.stable
+    python -c "import version as v; open(r'dist\Demiurge\templates\version.txt','w').write((f'{v.major}.{v.minor}.{v.patch}' if v.patch else f'{v.major}.{v.minor}') + f'.{v.status}')"
 )
 for %%f in (README.md LICENSE.txt COPYRIGHT.txt NOTICE install.bat install.ps1 install.sh) do if exist %%f copy /y %%f dist\Demiurge\ >nul
 if exist dist\Demiurge-win64.zip del dist\Demiurge-win64.zip

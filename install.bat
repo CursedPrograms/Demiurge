@@ -7,7 +7,7 @@ rem Run build.bat first (or unzip a release and run this beside it).
 set "SRC=dist\Demiurge"
 if exist "Demiurge.exe" set "SRC=."
 if not exist "%SRC%\Demiurge.exe" ( echo Build it first: build.bat & exit /b 1 )
-tasklist /fi "imagename eq Demiurge.exe" | find /i "Demiurge.exe" >nul
+tasklist /fi "imagename eq Demiurge.exe" | "%SystemRoot%\System32\find.exe" /i "Demiurge.exe" >nul
 if not errorlevel 1 ( echo Demiurge is open: close it and run this again. & exit /b 1 )
 set "INST=%LOCALAPPDATA%\Programs\Demiurge"
 if not exist "%INST%" mkdir "%INST%"
