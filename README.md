@@ -1,76 +1,98 @@
-# Godot Engine
+[![Twitter: @NorowaretaGemu](https://img.shields.io/badge/X-@NorowaretaGemu-blue.svg?style=flat)](https://x.com/NorowaretaGemu)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
 
-<p align="center">
-  <a href="https://godotengine.org">
-    <img src="misc/logo/logo_outlined.svg" width="400" alt="Godot Engine logo">
+<br>
+<div align="center">
+  <a href="https://ko-fi.com/cursedentertainment">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="ko-fi" style="width: 20%;"/>
   </a>
-</p>
+</div>
+<br>
 
-## 2D and 3D cross-platform game engine
+<div align="center">
+  <img alt="C++" src="https://img.shields.io/badge/C%2B%2B-%23323330.svg?&style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
+  <img alt="Python" src="https://img.shields.io/badge/Python-%23323330.svg?&style=for-the-badge&logo=python&logoColor=white"/>
+</div>
+<br>
 
-**[Godot Engine](https://godotengine.org) is a feature-packed, cross-platform
-game engine to create 2D and 3D games from a unified interface.** It provides a
-comprehensive set of [common tools](https://godotengine.org/features), so that
-users can focus on making games without having to reinvent the wheel. Games can
-be exported with one click to a number of platforms, including the major desktop
-platforms (Linux, macOS, Windows), mobile platforms (Android, iOS), as well as
-Web-based platforms and [consoles](https://godotengine.org/consoles).
+<div align="center">
+  <img src="misc/demiurge/logo.png" alt="Demiurge" width="160">
+</div>
 
-## Free, open source and community-driven
+# Demiurge
 
-Godot is completely free and open source under the very permissive [MIT license](https://godotengine.org/license).
-No strings attached, no royalties, nothing. The users' games are theirs, down
-to the last line of engine code. Godot's development is fully independent and
-community-driven, empowering users to help shape their engine to match their
-expectations. It is supported by the [Godot Foundation](https://godot.foundation/)
-not-for-profit.
+**Make worlds.** Demiurge is Atelier's game engine: 2D and 3D games for Windows and Linux, made in one editor on your
+own PC. It is [Godot Engine](https://godotengine.org) 4.7, built as part of
+[Atelier](https://github.com/CursedPrograms/Atelier), Cursed Entertainment's creative suite, in Atelier's look.
 
-Before being open sourced in [February 2014](https://github.com/godotengine/godot/commit/0b806ee0fc9097fa7bda7ac0109191c9c5e0a1ac),
-Godot had been developed by [Juan Linietsky](https://github.com/reduz) and
-[Ariel Manzur](https://github.com/punto-) for several years as an in-house
-engine, used to publish several work-for-hire titles.
+**Website:** https://cursedprograms.github.io/Demiurge/
 
-![Screenshot of a 3D scene in the Godot Engine editor](https://raw.githubusercontent.com/godotengine/godot-design/master/screenshots/editor_tps_demo_1920x1080.jpg)
+![Demiurge's editor](images/window.jpg)
 
-## Getting the engine
+## What it is
 
-### Binary downloads
+Everything Godot 4.7 does, under Demiurge's name and colours:
 
-Official binaries for the Godot editor and the export templates can be found
-[on the Godot website](https://godotengine.org/download).
+- **2D and 3D:** a dedicated 2D renderer with tilemaps, and 3D with real-time global illumination, volumetric fog and
+  screen-space effects, on Vulkan, Direct3D 12 or OpenGL.
+- **Scenes of nodes:** a player, a door or a whole level is a scene you can drop into other scenes.
+- **Scripting:** GDScript, a visual shader editor, and C++ through GDExtension.
+- **Physics and animation:** 2D and 3D bodies, joints and ragdolls; an animation player, blend trees and state machines.
+- **Export:** Windows and Linux from the editor, with Demiurge's own export templates.
 
-### Compiling from source
+Godot projects, tutorials and add-ons work in Demiurge as they are (it opens `project.godot` files and saves them the
+same way), so all of Godot's documentation applies: https://docs.godotengine.org/en/4.7/
 
-[See the official docs](https://docs.godotengine.org/en/latest/engine_details/development/compiling)
-for compilation instructions for every supported platform.
+### What Demiurge changes
 
-## Community and contributing
+- The name, the logo, the splash, the icons and the title bar (`version.py`, `misc/demiurge/make_logo.py`).
+- The editor's default colours: the Changeling grey `#242424` and the Atelier blue `#007bb7`.
+- The editor's own words say Demiurge where they meant the program; Godot's credits, About box and licences stay.
+- Build, package and install scripts for Atelier (`build.bat`, `install.bat`, with `.ps1` and `.sh` twins).
 
-Godot is not only an engine but an ever-growing community of users and engine
-developers. The main community channels are listed [on the homepage](https://godotengine.org/community).
+## Install
 
-The best way to get in touch with the core engine developers is to join the
-[Godot Contributors Chat](https://chat.godotengine.org).
+Download `Demiurge-win64.zip` from the [releases](https://github.com/CursedPrograms/Demiurge/releases), unzip it and
+run `install.bat` (Start menu and Desktop shortcuts), or just run `Demiurge.exe`. It's also in the Atelier launcher.
 
-To get started contributing to the project, see the [contributing guide](CONTRIBUTING.md).
-This document also includes guidelines for reporting bugs.
+## Build
 
-## Documentation and demos
+Needs Visual Studio 2022 (C++) and Python 3 with SCons (`pip install scons`).
 
-The official documentation is hosted on [Read the Docs](https://docs.godotengine.org).
-It is maintained by the Godot community in its own [GitHub repository](https://github.com/godotengine/godot-docs).
+```bat
+build.bat              :: the editor: bin\, dist\Demiurge and dist\Demiurge-win64.zip
+build.bat templates    :: also the export templates (what exported games run on)
+install.bat            :: installs dist\Demiurge for this user
+```
 
-The [class reference](https://docs.godotengine.org/en/latest/classes/)
-is also accessible from the Godot editor.
+The first build downloads AccessKit and the Direct3D 12 SDK into `bin\build_deps` and takes about an hour on 12 threads.
+On Linux, `./build.sh` builds the Linux editor (with Godot's usual packages installed, see
+[README.godot.md](README.godot.md)) and `./install.sh` installs it.
 
-We also maintain official demos in their own [GitHub repository](https://github.com/godotengine/godot-demo-projects)
-as well as a list of [awesome Godot community resources](https://github.com/godotengine/awesome-godot).
+## Credits
 
-There are also a number of other
-[learning resources](https://docs.godotengine.org/en/latest/community/tutorials.html)
-provided by the community, such as text and video tutorials, demos, etc.
-Consult the [community channels](https://godotengine.org/community)
-for more information.
+Demiurge is [Godot Engine](https://github.com/godotengine/godot) 4.7.2 (MIT), © 2014-present Godot Engine contributors,
+© 2007-2014 Juan Linietsky, Ariel Manzur. Godot's own README is [README.godot.md](README.godot.md); its licence is
+[LICENSE.txt](LICENSE.txt) and the licences of everything it includes are in [COPYRIGHT.txt](COPYRIGHT.txt). The name
+on the logo is set in [Inter](https://rsms.me/inter/) (OFL), which Godot ships. See [NOTICE](NOTICE).
 
-[![Code Triagers Badge](https://www.codetriage.com/godotengine/godot/badges/users.svg)](https://www.codetriage.com/godotengine/godot)
-[![Translate on Weblate](https://hosted.weblate.org/widgets/godot-engine/-/godot/svg-badge.svg)](https://hosted.weblate.org/engage/godot-engine/?utm_source=widget)
+<br>
+<div align="center">
+<a href="https://cursedprograms.github.io/Demiurge/" target="_blank">
+    <img src="https://raw.githubusercontent.com/CursedPrograms/Demiurge/main/images/site-qr.png"
+        alt="QR code to the Demiurge website" style="width:200px;">
+</a>
+</div>
+
+---
+<br>
+<div align="center">
+<a href="https://github.com/Farica-Kimora">Farica☆Kimora</a> © Cursed Entertainment 2026
+</div>
+<br>
+<div align="center">
+<a href="https://cursed-entertainment.itch.io/" target="_blank">
+    <img src="https://github.com/CursedPrograms/cursedentertainment/raw/main/images/logos/logo-wide-grey.png"
+        alt="CursedEntertainment Logo" style="width:250px;">
+</a>
+</div>

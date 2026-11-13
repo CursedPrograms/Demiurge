@@ -1,0 +1,16 @@
+Demiurge
+Copyright (c) 2026 Cursed Entertainment
+
+Demiurge is a modified version of Godot Engine 4.7.2-stable:
+  Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
+  Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+  Licensed under the MIT license: see LICENSE.txt.
+  https://github.com/godotengine/godot
+
+The third-party components Godot includes, and their licenses, are listed in COPYRIGHT.txt.
+
+Changes in Demiurge: the name, logo, icons, splash and default editor colours; the editor's user-facing text names
+Demiurge where it meant the program; build, package and install scripts. Demiurge's own changes are under the same
+MIT license.
+
+The logo's lettering is Inter (SIL Open Font License 1.1), from thirdparty/fonts.
