@@ -36,9 +36,12 @@ Everything Godot 4.7 does, under Demiurge's name and colours:
 - **2D and 3D:** a dedicated 2D renderer with tilemaps, and 3D with real-time global illumination, volumetric fog and
   screen-space effects, on Vulkan, Direct3D 12 or OpenGL.
 - **Scenes of nodes:** a player, a door or a whole level is a scene you can drop into other scenes.
-- **Scripting:** GDScript, a visual shader editor, and C++ through GDExtension.
+- **Scripting:** GDScript and **C#** (.NET 8) in the same editor, a visual shader editor, and C++ through GDExtension.
 - **Physics and animation:** 2D and 3D bodies, joints and ragdolls; an animation player, blend trees and state machines.
-- **Export:** Windows and Linux from the editor, with Demiurge's own export templates.
+- **Export:** Windows and Linux from the editor, with Demiurge's own export templates (they come with it).
+- **People from Pygmalion:** in [Pygmalion](https://github.com/CursedPrograms/Pygmalion), Files > Export > Demiurge
+  link sends a person (FBX with the skeleton) to `res://characters/` and keeps them up to date: change a slider in
+  Pygmalion and the scene in Demiurge updates.
 
 Godot projects, tutorials and add-ons work in Demiurge as they are (it opens `project.godot` files and saves them the
 same way), so all of Godot's documentation applies: https://docs.godotengine.org/en/4.7/
@@ -48,7 +51,8 @@ same way), so all of Godot's documentation applies: https://docs.godotengine.org
 - The name, the logo, the splash, the icons and the title bar (`version.py`, `misc/demiurge/make_logo.py`).
 - The editor's default colours: the Changeling grey `#242424` and the Atelier blue `#007bb7`.
 - The editor's own words say Demiurge where they meant the program; Godot's credits, About box and licences stay.
-- Build, package and install scripts for Atelier (`build.bat`, `install.bat`, with `.ps1` and `.sh` twins).
+- Build, package and install scripts for Atelier (`build.bat`, `install.bat`, with `.ps1` and `.sh` twins): one
+  edition, with C# and the export templates included.
 
 ## Install
 
@@ -57,15 +61,16 @@ run `install.bat` (Start menu and Desktop shortcuts), or just run `Demiurge.exe`
 
 ## Build
 
-Needs Visual Studio 2022 (C++) and Python 3 with SCons (`pip install scons`).
+Needs Visual Studio 2022 (C++), the .NET 8 SDK and Python 3 with SCons (`pip install scons`).
 
 ```bat
-build.bat              :: the editor: bin\, dist\Demiurge and dist\Demiurge-win64.zip
-build.bat templates    :: also the export templates (what exported games run on)
-install.bat            :: installs dist\Demiurge for this user
+build.bat              :: everything: the editor with C#, the export templates, dist\Demiurge-win64.zip
+build.bat editor       :: the editor only
+install.bat            :: installs dist\Demiurge for this user (and the templates where the editor finds them)
 ```
 
-The first build downloads AccessKit and the Direct3D 12 SDK into `bin\build_deps` and takes about an hour on 12 threads.
+The first build downloads AccessKit and the Direct3D 12 SDK into `bin\build_deps` and takes about an hour and a half
+on 12 threads. C# projects need the .NET 8 SDK on the PC that edits them; GDScript projects need nothing.
 On Linux, `./build.sh` builds the Linux editor (with Godot's usual packages installed, see
 [README.godot.md](README.godot.md)) and `./install.sh` installs it.
 
