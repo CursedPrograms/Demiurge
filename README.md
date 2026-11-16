@@ -54,6 +54,16 @@ same way), so all of Godot's documentation applies: https://docs.godotengine.org
 - Build, package and install scripts for Atelier (`build.bat`, `install.bat`, with `.ps1` and `.sh` twins): one
   edition, with C# and the export templates included.
 
+## Minimum requirements
+
+| | |
+| --- | --- |
+| **System** | Windows 10 or 11, 64-bit (Linux builds from source) |
+| **Processor** | any 64-bit processor |
+| **Memory** | 4 GB RAM (8 GB for 3D games) |
+| **Graphics** | a card with Vulkan 1.0, Direct3D 12 or OpenGL 3.3 |
+| **Disk** | 500 MB, plus your projects |
+
 ## Install
 
 Download `Demiurge-win64.zip` from the [releases](https://github.com/CursedPrograms/Demiurge/releases), unzip it and
