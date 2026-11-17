@@ -13,7 +13,7 @@ install -m 755 "$BIN" ~/.local/bin/demiurge
 cp misc/demiurge/logo.png ~/.local/share/icons/demiurge.png
 cat > ~/.local/share/applications/demiurge.desktop <<EOF
 [Desktop Entry]
-Name=Demiurge
+Name=Atelier - Demiurge
 Comment=The Atelier game engine
 Exec=$HOME/.local/bin/demiurge
 Icon=$HOME/.local/share/icons/demiurge.png

@@ -1,7 +1,7 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-rem Installs Demiurge for this user: %LOCALAPPDATA%\Programs\Demiurge, with Start menu and Desktop shortcuts.
+rem Installs Demiurge for this user: %LOCALAPPDATA%\Programs\Demiurge, with Start menu and Desktop shortcuts named Atelier - Demiurge.
 rem Its export templates (when the build has them) go where the editor looks: %APPDATA%\Demiurge\export_templates.
 rem Run build.bat first (or unzip a release and run this beside it).
 set "SRC=dist\Demiurge"
@@ -17,7 +17,7 @@ if exist "%SRC%\templates\version.txt" (
     call set "TDIR=%APPDATA%\Demiurge\export_templates\%%TV%%"
     call xcopy /e /i /q /y "%SRC%\templates\*" "%%TDIR%%\" >nul
 )
-powershell -NoProfile -Command "$s=New-Object -ComObject WScript.Shell; foreach($d in @([Environment]::GetFolderPath('Programs'),[Environment]::GetFolderPath('Desktop'))){ $l=$s.CreateShortcut((Join-Path $d 'Demiurge.lnk')); $l.TargetPath='%INST%\Demiurge.exe'; $l.WorkingDirectory='%INST%'; $l.IconLocation='%INST%\Demiurge.exe,0'; $l.Description='Demiurge: the Atelier game engine'; $l.Save() }"
+powershell -NoProfile -Command "$s=New-Object -ComObject WScript.Shell; foreach($d in @([Environment]::GetFolderPath('Programs'),[Environment]::GetFolderPath('Desktop'))){ Remove-Item (Join-Path $d 'Demiurge.lnk') -Force -ErrorAction SilentlyContinue; $l=$s.CreateShortcut((Join-Path $d 'Atelier - Demiurge.lnk')); $l.TargetPath='%INST%\Demiurge.exe'; $l.WorkingDirectory='%INST%'; $l.IconLocation='%INST%\Demiurge.exe,0'; $l.Description='Demiurge: the Atelier game engine'; $l.Save() }"
 echo Installed: %INST%
 if /i not "%~1"=="--quiet" echo Start it from the Start menu or the Desktop.
 exit /b 0
