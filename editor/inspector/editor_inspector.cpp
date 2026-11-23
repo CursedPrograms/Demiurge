@@ -2245,7 +2245,6 @@ void EditorInspectorSection::_notification(int p_what) {
 			int header_height = _get_header_height();
 			Rect2 header_rect = Rect2(Vector2(header_offset_x, 0.0), Vector2(header_width, header_height));
 			Color c = bg_color;
-			c.a *= 0.4;
 			if (header_hover) {
 				c = c.lightened(Input::get_singleton()->is_mouse_button_pressed(MouseButton::LEFT) ? -0.05 : 0.2);
 			}

@@ -294,7 +294,7 @@ void EngineUpdateLabel::pressed() {
 		} break;
 
 		case UpdateStatus::UPDATE_AVAILABLE: {
-			OS::get_singleton()->shell_open("https://godotengine.org/download/archive/" + available_newer_version);
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge/releases");
 		} break;
 
 		default: {

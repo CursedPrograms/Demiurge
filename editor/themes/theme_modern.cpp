@@ -207,7 +207,7 @@ void ThemeModern::populate_shared_styles(const Ref<EditorTheme> &p_theme, Editor
 		p_config.flat_button_pressed_color = _get_base_color(p_config, -2.0, 0.75);
 		p_config.flat_button_hover_pressed_color = _get_base_color(p_config, -2.4, 0.75);
 
-		p_config.shadow_color = Color(0, 0, 0, p_config.dark_theme ? 0.3 : 0.1);
+		p_config.shadow_color = Color(0, 0, 0, 0);
 		p_config.selection_color = p_config.accent_color * Color(1, 1, 1, 0.4);
 		p_config.disabled_border_color = p_config.mono_color.inverted().lerp(p_config.base_color, 0.7);
 		p_config.disabled_bg_color = p_config.mono_color.inverted().lerp(p_config.base_color, 0.9);
@@ -780,6 +780,7 @@ void ThemeModern::populate_standard_styles(const Ref<EditorTheme> &p_theme, Edit
 	// TabBar & TabContainer.
 	{
 		Ref<StyleBoxFlat> style_tab_selected = p_config.base_style->duplicate();
+		style_tab_selected->set_bg_color(p_config.accent_color);
 		style_tab_selected->set_content_margin_individual(p_config.base_margin * 4 * EDSCALE, p_config.base_margin * 2.1 * EDSCALE, p_config.base_margin * 4 * EDSCALE, p_config.base_margin * 2.1 * EDSCALE);
 		style_tab_selected->set_corner_radius_individual(p_config.corner_radius * EDSCALE, p_config.corner_radius * EDSCALE, 0, 0);
 
@@ -2390,7 +2391,7 @@ void ThemeModern::populate_editor_styles(const Ref<EditorTheme> &p_theme, Editor
 		p_theme->set_constant("indent_size", "EditorInspectorSection", 6.0 * EDSCALE);
 		p_theme->set_constant("h_separation", "EditorInspectorSection", p_config.base_margin * EDSCALE);
 
-		Color prop_subsection_stylebox_color = p_config.button_disabled_color.lerp(p_config.base_color, 0.48);
+		Color prop_subsection_stylebox_color = p_config.accent_color;
 		p_theme->set_color("prop_subsection_stylebox_color", EditorStringName(Editor), prop_subsection_stylebox_color);
 
 		Ref<StyleBoxFlat> prop_subsection_stylebox = p_config.base_style->duplicate();
@@ -2411,7 +2412,7 @@ void ThemeModern::populate_editor_styles(const Ref<EditorTheme> &p_theme, Editor
 		prop_subsection_stylebox_right->set_border_width(SIDE_RIGHT, Math::ceil(EDSCALE));
 		p_theme->set_stylebox("prop_subsection_stylebox_right", EditorStringName(Editor), prop_subsection_stylebox_right);
 
-		p_theme->set_color("prop_subsection", EditorStringName(Editor), Color(1, 1, 1, 0));
+		p_theme->set_color("prop_subsection", EditorStringName(Editor), p_config.accent_color);
 #ifndef DISABLE_DEPRECATED // Used before 4.3.
 		p_theme->set_color("property_color", EditorStringName(Editor), p_config.dark_color_1.lerp(p_config.mono_color_font, 0.12));
 #endif

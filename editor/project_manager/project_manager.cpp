@@ -119,7 +119,7 @@ void ProjectManager::_notification(int p_what) {
 			SceneTree::get_singleton()->get_root()->set_title(GODOT_VERSION_NAME + String(" - ") + TTR("Project Manager", "Application"));
 
 			const String line1 = TTR("You don't have any projects yet.");
-			const String line2 = TTR("Get started by creating a new one,\nimporting one that exists, or by downloading a project template from the Asset Store!");
+			const String line2 = TTR("Get started by creating a new one,\nimporting one that exists, or by browsing project templates on GitHub!");
 			empty_list_message->set_text(vformat("[center][b]%s[/b] %s[/center]", line1, line2));
 
 			_titlebar_resized();
@@ -1320,7 +1320,7 @@ void ProjectManager::_titlebar_resized() {
 }
 
 void ProjectManager::_open_donate_page() {
-	OS::get_singleton()->shell_open("https://fund.godotengine.org/?ref=project_manager");
+	OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge");
 }
 
 // Object methods.

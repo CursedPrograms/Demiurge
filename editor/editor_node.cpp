@@ -3922,32 +3922,32 @@ void EditorNode::_menu_option_confirm(int p_option, bool p_confirmed) {
 			command_palette->open_popup();
 		} break;
 		case HELP_DOCS: {
-			OS::get_singleton()->shell_open(GODOT_VERSION_DOCS_URL "/");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge");
 		} break;
 		case HELP_FORUM: {
-			OS::get_singleton()->shell_open("https://forum.godotengine.org/");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge/discussions");
 		} break;
 		case HELP_REPORT_A_BUG: {
-			OS::get_singleton()->shell_open("https://github.com/godotengine/godot/issues");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge/issues");
 		} break;
 		case HELP_COPY_SYSTEM_INFO: {
 			String info = _get_system_info();
 			DisplayServer::get_singleton()->clipboard_set(info);
 		} break;
 		case HELP_SUGGEST_A_FEATURE: {
-			OS::get_singleton()->shell_open("https://github.com/godotengine/godot-proposals#readme");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge/discussions");
 		} break;
 		case HELP_SEND_DOCS_FEEDBACK: {
-			OS::get_singleton()->shell_open("https://github.com/godotengine/godot-docs/issues");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge/issues");
 		} break;
 		case HELP_COMMUNITY: {
-			OS::get_singleton()->shell_open("https://godotengine.org/community");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge/discussions");
 		} break;
 		case HELP_ABOUT: {
 			about->popup_centered(Size2(780, 500) * EDSCALE);
 		} break;
 		case HELP_SUPPORT_GODOT_DEVELOPMENT: {
-			OS::get_singleton()->shell_open("https://fund.godotengine.org/?ref=help_menu");
+			OS::get_singleton()->shell_open("https://github.com/CursedPrograms/Demiurge");
 		} break;
 	}
 }
@@ -6004,7 +6004,7 @@ String EditorNode::_get_system_info() const {
 	}
 	const String distribution_version = OS::get_singleton()->get_version_alias();
 
-	String godot_version = "Godot v" + String(GODOT_VERSION_FULL_CONFIG);
+	String godot_version = "Demiurge v" + String(GODOT_VERSION_FULL_CONFIG);
 	if (String(GODOT_VERSION_BUILD) != "official") {
 		String hash = String(GODOT_VERSION_HASH);
 		hash = hash.is_empty() ? String("unknown") : vformat("(%s)", hash.left(9));
@@ -8993,7 +8993,7 @@ EditorNode::EditorNode() {
 	ED_SHORTCUT_AND_COMMAND("editor/suggest_a_feature", TTRC("Suggest a Feature"));
 	ED_SHORTCUT_AND_COMMAND("editor/send_docs_feedback", TTRC("Send Docs Feedback"));
 	ED_SHORTCUT_AND_COMMAND("editor/about", TTRC("About Demiurge..."));
-	ED_SHORTCUT_AND_COMMAND("editor/support_development", TTRC("Support Godot Development"));
+	ED_SHORTCUT_AND_COMMAND("editor/support_development", TTRC("Support Demiurge Development"));
 
 	// Use the Ctrl modifier so F2 can be used to rename nodes in the scene tree dock.
 	ED_SHORTCUT_AND_COMMAND("editor/editor_2d", TTRC("Open 2D Workspace"), KeyModifierMask::CTRL | Key::F1);
@@ -9203,15 +9203,8 @@ EditorNode::EditorNode() {
 	// Dock numbers are based on DockSlot enum value + 1.
 	{
 		const String scene_key = SceneTreeDock::get_singleton()->get_effective_layout_key();
-		const String import_key = ImportDock::get_singleton()->get_effective_layout_key();
-		default_layout->set_value(docks_section, "dock_3", vformat("%s,%s", scene_key, import_key));
-		default_layout->set_value(docks_section, "dock_3_selected_tab_idx", 0);
-	}
-	{
-		const String filesystem_key = filesystem_dock->get_effective_layout_key();
-		const String history_key = history_dock->get_effective_layout_key();
-		default_layout->set_value(docks_section, "dock_4", vformat("%s,%s", filesystem_key, history_key));
-		default_layout->set_value(docks_section, "dock_4_selected_tab_idx", 0);
+		default_layout->set_value(docks_section, "dock_1", scene_key);
+		default_layout->set_value(docks_section, "dock_1_selected_tab_idx", 0);
 	}
 	{
 		const String inspector_key = InspectorDock::get_singleton()->get_effective_layout_key();
@@ -9219,6 +9212,18 @@ EditorNode::EditorNode() {
 		const String groups_key = GroupsDock::get_singleton()->get_effective_layout_key();
 		default_layout->set_value(docks_section, "dock_5", vformat("%s,%s,%s", inspector_key, signals_key, groups_key));
 		default_layout->set_value(docks_section, "dock_5_selected_tab_idx", 0);
+	}
+	{
+		// Import settings and History below the Inspector.
+		const String import_key = ImportDock::get_singleton()->get_effective_layout_key();
+		const String history_key = history_dock->get_effective_layout_key();
+		default_layout->set_value(docks_section, "dock_6", vformat("%s,%s", import_key, history_key));
+		default_layout->set_value(docks_section, "dock_6_selected_tab_idx", 0);
+	}
+	{
+		const String filesystem_key = filesystem_dock->get_effective_layout_key();
+		default_layout->set_value(docks_section, "dock_10", filesystem_key);
+		default_layout->set_value(docks_section, "dock_10_selected_tab_idx", 0);
 	}
 
 	int hsplits[] = { 0, dock_hsize, -dock_hsize, 0 };
@@ -9402,11 +9407,7 @@ EditorNode::EditorNode() {
 	TextEditor::register_editor();
 	TextShaderEditor::register_editor();
 
-	if (AssetLibraryEditorPlugin::is_available()) {
-		add_editor_plugin(memnew(AssetLibraryEditorPlugin));
-	} else {
-		print_verbose("Asset Store not available (due to using Web editor, or SSL support disabled).");
-	}
+	// The upstream asset store is not part of the Demiurge editor.
 
 	// More visually meaningful to have this later.
 	add_editor_plugin(memnew(AnimationPlayerEditorPlugin));

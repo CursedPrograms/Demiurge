@@ -31,7 +31,6 @@
 #include "editor_about.h"
 
 #include "core/authors.gen.h"
-#include "core/donors.gen.h"
 #include "core/license.gen.h"
 #include "core/object/callable_mp.h"
 #include "core/os/os.h"
@@ -57,7 +56,7 @@ void EditorAbout::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_TRANSLATION_CHANGED: {
 			_about_text_label->set_text(
-					String(U"© 2014-present ") + TTR("Godot Engine contributors") + ".\n" +
+					String(U"Based on Godot Engine (MIT).\n© 2014-present ") + TTR("Godot Engine contributors") + ".\n" +
 					String(U"© 2007-2014 Juan Linietsky, Ariel Manzur.\n"));
 
 			_project_manager_label->set_text(TTR("Project Manager", "Job Title"));
@@ -211,7 +210,7 @@ Label *EditorAbout::_create_section(Control *p_parent, const String &p_name, con
 }
 
 EditorAbout::EditorAbout() {
-	set_title(TTRC("Thanks from the Godot community!"));
+	set_title(TTRC("About Demiurge"));
 	set_hide_on_ok(true);
 
 	VBoxContainer *vbc = memnew(VBoxContainer);
@@ -268,26 +267,6 @@ EditorAbout::EditorAbout() {
 		_create_section(vb, TTRC("Developers"), AUTHORS_DEVELOPERS);
 	}
 
-	{
-		ScrollContainer *sc = memnew(ScrollContainer);
-		sc->set_name(TTRC("Donors"));
-		sc->set_v_size_flags(Control::SIZE_EXPAND);
-		tc->add_child(sc);
-
-		VBoxContainer *vb = memnew(VBoxContainer);
-		vb->set_h_size_flags(Control::SIZE_EXPAND_FILL);
-		sc->add_child(vb);
-
-		_create_section(vb, TTRC("Patrons"), DONORS_PATRONS, FLAG_ALLOW_WEBSITE | FLAG_SINGLE_COLUMN);
-		_create_section(vb, TTRC("Platinum Sponsors"), DONORS_SPONSORS_PLATINUM, FLAG_ALLOW_WEBSITE);
-		_create_section(vb, TTRC("Gold Sponsors"), DONORS_SPONSORS_GOLD, FLAG_ALLOW_WEBSITE);
-		_create_section(vb, TTRC("Silver Sponsors"), DONORS_SPONSORS_SILVER, FLAG_ALLOW_WEBSITE);
-		_create_section(vb, TTRC("Diamond Members"), DONORS_MEMBERS_DIAMOND, FLAG_ALLOW_WEBSITE);
-		_create_section(vb, TTRC("Titanium Members"), DONORS_MEMBERS_TITANIUM, FLAG_ALLOW_WEBSITE);
-		_create_section(vb, TTRC("Platinum Members"), DONORS_MEMBERS_PLATINUM, FLAG_ALLOW_WEBSITE);
-		_create_section(vb, TTRC("Gold Members"), DONORS_MEMBERS_GOLD, FLAG_ALLOW_WEBSITE);
-	}
-
 	// License.
 
 	license_text_label = memnew(RichTextLabel);
@@ -306,7 +285,7 @@ EditorAbout::EditorAbout() {
 	license_thirdparty->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 	tc->add_child(license_thirdparty);
 
-	Label *tpl_label = memnew(Label(TTRC("Godot Engine relies on a number of third-party free and open source libraries, all compatible with the terms of its MIT license. The following is an exhaustive list of all such third-party components with their respective copyright statements and license terms.")));
+	Label *tpl_label = memnew(Label(TTRC("Demiurge relies on third-party free and open source libraries. The following is an exhaustive list of their copyright statements and license terms.")));
 	tpl_label->set_focus_mode(Control::FOCUS_ACCESSIBILITY);
 	tpl_label->set_h_size_flags(Control::SIZE_EXPAND_FILL);
 	tpl_label->set_autowrap_mode(TextServer::AUTOWRAP_WORD_SMART);

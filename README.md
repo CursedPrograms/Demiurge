@@ -22,7 +22,7 @@
 # Demiurge
 
 **Make worlds.** Demiurge is Atelier's game engine: 2D and 3D games for Windows and Linux, made in one editor on your
-own PC. It is [Godot Engine](https://godotengine.org) 4.7, built as part of
+own PC. Built on the 4.7 engine, it is part of
 [Atelier](https://github.com/CursedPrograms/Atelier), Cursed Entertainment's creative suite, in Atelier's look.
 
 **Website:** https://cursedprograms.github.io/Demiurge/
@@ -31,7 +31,7 @@ own PC. It is [Godot Engine](https://godotengine.org) 4.7, built as part of
 
 ## What it is
 
-Everything Godot 4.7 does, under Demiurge's name and colours:
+Everything the 4.7 engine provides, under Demiurge's name and colours:
 
 - **2D and 3D:** a dedicated 2D renderer with tilemaps, and 3D with real-time global illumination, volumetric fog and
   screen-space effects, on Vulkan, Direct3D 12 or OpenGL.
@@ -43,14 +43,13 @@ Everything Godot 4.7 does, under Demiurge's name and colours:
   link sends a person (FBX with the skeleton) to `res://characters/` and keeps them up to date: change a slider in
   Pygmalion and the scene in Demiurge updates.
 
-Godot projects, tutorials and add-ons work in Demiurge as they are (it opens `project.godot` files and saves them the
-same way), so all of Godot's documentation applies: https://docs.godotengine.org/en/4.7/
+Projects, tutorials and add-ons using the compatible `project.godot` format work in Demiurge as they are.
 
 ### What Demiurge changes
 
 - The name, the logo, the splash, the icons and the title bar (`version.py`, `misc/demiurge/make_logo.py`).
 - The editor's default colours: the Changeling grey `#242424` and the Atelier blue `#007bb7`.
-- The editor's own words say Demiurge where they meant the program; Godot's credits, About box and licences stay.
+- The editor uses Demiurge's name, logo, splash screen, colours and links.
 - Build, package and install scripts for Atelier (`build.bat`, `install.bat`, with `.ps1` and `.sh` twins): one
   edition, with C# and the export templates included.
 
@@ -81,15 +80,12 @@ install.bat            :: installs dist\Demiurge for this user (and the template
 
 The first build downloads AccessKit and the Direct3D 12 SDK into `bin\build_deps` and takes about an hour and a half
 on 12 threads. C# projects need the .NET 8 SDK on the PC that edits them; GDScript projects need nothing.
-On Linux, `./build.sh` builds the Linux editor (with Godot's usual packages installed, see
-[README.godot.md](README.godot.md)) and `./install.sh` installs it.
+On Linux, `./build.sh` builds the Linux editor with the required system packages installed, and `./install.sh` installs it.
 
 ## Credits
 
-Demiurge is [Godot Engine](https://github.com/godotengine/godot) 4.7.2 (MIT), © 2014-present Godot Engine contributors,
-© 2007-2014 Juan Linietsky, Ariel Manzur. Godot's own README is [README.godot.md](README.godot.md); its licence is
-[LICENSE.txt](LICENSE.txt) and the licences of everything it includes are in [COPYRIGHT.txt](COPYRIGHT.txt). The name
-on the logo is set in [Inter](https://rsms.me/inter/) (OFL), which Godot ships. See [NOTICE](NOTICE).
+Based on Godot Engine (MIT), © 2014-present Godot Engine contributors, © 2007-2014 Juan Linietsky, Ariel Manzur. See
+[LICENSE.txt](LICENSE.txt), [COPYRIGHT.txt](COPYRIGHT.txt), and [NOTICE](NOTICE).
 
 <br>
 <div align="center">
