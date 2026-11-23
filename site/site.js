@@ -7,7 +7,7 @@
     ['Write it your way', 'GDScript, built for games and easy to learn, or C# (.NET 8), a visual shader editor, and C++ through GDExtension for the heavy parts.'],
     ['Physics and animation', 'Bodies, joints and ragdolls in 2D and 3D, an animation player for anything, blend trees and state machines for characters.'],
     ['One click to play', 'Export to Windows and Linux from the editor; Demiurge\'s own export templates come with it.'],
-    ['The Atelier look', 'The Changeling greys and the Atelier blue, and Godot\'s projects, tutorials and add-ons work as they are.']
+    ['The Atelier look', 'The Changeling greys and the Atelier blue, square and flat, laid out like Unity: Scene on the left, Inspector on the right, FileSystem along the bottom. Projects in the project.godot format work as they are.']
   ];
   const grid = document.getElementById('features');
   if (grid) {
